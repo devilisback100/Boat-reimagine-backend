@@ -8,6 +8,17 @@
         }
     ],
     "routes": [
-        
+        {
+            "src": "/get_blogs",
+            "dest": "/get_blogs"
+        },
+        {
+            "src": "/get_code/",
+            "dest": "/get_code/"
+        },
+        {
+            "src": "/(.*)",
+            "dest": "/"
+        }
     ]
 }
