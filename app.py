@@ -55,18 +55,21 @@ def get_blogs():
         return jsonify(blog_data)
 
 
+@app.route('/get_code/', methods=['GET'])
+def get_code():
+    url = request.args.get('url')
+    if not url:
+        return jsonify({"error": "Missing URL parameter"}), 400
 
-@app.route('/get_code/<path:url>', methods=['GET'])
-def get_code(url):
-    url = f"{url}"
     response = requests.get(url)
     soup = BeautifulSoup(response.text, 'html.parser')
 
     # Find elements with class 'rte'
     elements = soup.find_all(class_='rte')
     html_data = [element.prettify() for element in elements]
-    
+
     return jsonify(html_data)
+
 
 
 
