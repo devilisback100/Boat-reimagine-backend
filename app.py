@@ -50,11 +50,7 @@ def get_blogs():
         c.executemany("INSERT INTO blogs VALUES (?,?,?,?,?)", blog_data)
         conn.commit()
         conn.close()
-
-
         return jsonify(blog_data)
-
-
 
 @app.route('/get_code/', methods=['GET'])
 def get_code():
@@ -62,18 +58,21 @@ def get_code():
     if not url:
         return jsonify({"error": "Missing URL parameter"}), 400
 
-    response = requests.get(url)
-    soup = BeautifulSoup(response.text, 'html.parser')
+    try:
+        response = requests.get(url)
+        soup = BeautifulSoup(response.text, 'html.parser')
 
-    # Find elements with class 'rte'
-    elements = soup.find_all(class_='rte')
-    html_data = [element.prettify() for element in elements]
+        # Find elements with class 'rte'
+        elements = soup.find_all(class_='rte')
+        html_data = [element.prettify() for element in elements]
+        
+        return jsonify(html_data)
+    except requests.exceptions.RequestException as e:
+        # Handle any exceptions that occur during the request
+        return jsonify({"error": str(e)}), 500
+
     
-    return jsonify(html_data)
-    
-@app.route('/hello_world', methods=['GET'])
-def hello_world():
-    return 'Hello World'
+
     
     
 
