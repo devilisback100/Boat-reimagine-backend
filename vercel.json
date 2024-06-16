@@ -17,10 +17,6 @@
             "dest": "/get_code/"
         },
         {
-            "src": "/hello_world",
-            "dest": "/hello_world"
-        },
-        {
             "src": "/(.*)",
             "dest": "/"
         }
