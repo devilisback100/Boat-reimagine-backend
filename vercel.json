@@ -7,18 +7,23 @@
             "config": { "runtime": "python3.12" }
         }
     ],
-    "routes": [
-        {
-            "src": "/get_blogs",
-            "dest": "/get_blogs"
+   "routes": [
+    {
+        "src": "/get_blogs",
+        "dest": "/get_blogs"
+    },
+    {
+        "src": "/get_code/",
+        "dest": "/get_code/",
+        "headers": {
+            "Location": "https://your-link-or-url.com"
         },
-        {
-            "src": "/get_code/",
-            "dest": "/get_code/"
-        },
-        {
-            "src": "/(.*)",
-            "dest": "/"
-        }
-    ]
+        "status": 301
+    },
+    {
+        "src": "/(.*)",
+        "dest": "/"
+    }
+]
+
 }
