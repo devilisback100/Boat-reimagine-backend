@@ -56,9 +56,12 @@ def get_blogs():
 
 
 
-@app.route('/get_code/<path:url>', methods=['GET'])
-def get_code(url):
-    url = f"{url}"
+@app.route('/get_code/', methods=['GET'])
+def get_code():
+    url = request.args.get('url')
+    if not url:
+        return jsonify({"error": "Missing URL parameter"}), 400
+
     response = requests.get(url)
     soup = BeautifulSoup(response.text, 'html.parser')
 
@@ -67,6 +70,7 @@ def get_code(url):
     html_data = [element.prettify() for element in elements]
     
     return jsonify(html_data)
+
 
 
 
