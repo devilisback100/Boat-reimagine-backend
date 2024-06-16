@@ -70,6 +70,12 @@ def get_code():
     html_data = [element.prettify() for element in elements]
     
     return jsonify(html_data)
+    
+@app.route('/hello_world', methods=['GET'])
+def hello_world():
+    return 'Hello World'
+    
+    
 
 
 
