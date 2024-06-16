@@ -14,11 +14,7 @@
     },
     {
         "src": "/get_code/",
-        "dest": "/get_code/",
-        "headers": {
-            "Location": "https://your-link-or-url.com"
-        },
-        "status": 301
+        "dest": "/get_code/"
     },
     {
         "src": "/(.*)",
